@@ -16,7 +16,6 @@ import web.service.UserService;
 @Controller
 @RequestMapping("/")
 public class UserController {
-    private final  String REDIRECT_INFO = "redirect:/info";
 
     private final UserService userService;
 
@@ -25,18 +24,18 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping( "/")
     public String printWelcome() {
         return "user/start";
     }
 
-    @GetMapping("/info")
+    @GetMapping( "/info")
     public String printInfoAllUser(Model model) {
         model.addAttribute("userInfo", userService.getAll());
-        return REDIRECT_INFO;
+        return "user/userInfo";
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping( "/user/{id}")
     public String printInfoUserById(@PathVariable("id") long id, Model model) {
         model.addAttribute("userInfo", userService.getUserById(id));
         return "user/userInfoById";
@@ -50,7 +49,7 @@ public class UserController {
     @PostMapping()
     public String createUser(@ModelAttribute("user") User user) {
         userService.save(user);
-        return REDIRECT_INFO;
+        return "redirect:/info";
     }
 
     @GetMapping("/user/{id}/edit")
@@ -62,13 +61,12 @@ public class UserController {
     @PostMapping("/user/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") long id) {
         userService.save(user, id);
-        return REDIRECT_INFO;
+        return "redirect:/info";
     }
-
     @PostMapping("/info")
     public String deleteUser(@RequestParam Long id) {
         userService.delete(id);
-        return REDIRECT_INFO;
+        return "redirect:/info";
     }
 
 }
