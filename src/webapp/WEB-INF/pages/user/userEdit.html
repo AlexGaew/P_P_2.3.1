@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User edit</title>
+    <style>
+        body {
+            background-color: darkslategray;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin-left: 2cm;
+            margin-top: 2cm;
+            width: 60%;
+        }
+
+        input {
+            margin-left: 3cm;
+            margin-top: 2cm;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+
+    <label for="surName">Enter surName: </label>
+    <input type="text" th:field="*{surName}" id="surName"/>
+    <br/>
+
+    <label for="age">Enter age: </label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <br/>
+
+    <input type="submit" value="Update!"/>
+</form>
+
+
+
+
+
+</body>
+</html>

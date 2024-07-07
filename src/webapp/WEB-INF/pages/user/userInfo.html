@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>User info</title>
+    <style>
+        body {
+            background-color: darkslategray;
+            color: white;
+            text-align: left;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            background-color: darkslategray;
+            color: white;
+            text-align: left;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            margin-left: 2cm;
+            margin-top: 2cm;
+            width: 60%;
+            text-align: center;
+        }
+
+        input {
+            margin-left: 3cm;
+            margin-top: 2cm;
+        }
+
+        button {
+            margin-left: 3cm;
+            margin-top: 1cm;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<table border="3">
+    <tr>
+        <th><h2>Id</h2></th>
+        <th><h2>Name</h2></th>
+        <th><h2>Surname</h2></th>
+        <th><h2>Age</h2></th>
+    </tr>
+    <th:block th:each="userInfo :${userInfo}">
+        <tr>
+            <td><h3 th:text="${userInfo.getId()}"></h3></td>
+            <td><a th:href="@{/user/{id}(id=${userInfo.getId()})}"><h3 th:text="${userInfo.getName()}"></h3></a></td>
+            <td><h3 th:text="${userInfo.getSurName()}"></h3></td>
+            <td><h3 th:text="${userInfo.getAge()}"></h3></td>
+        </tr>
+    </th:block>
+
+</table>
+<div>
+    <a style="margin-right: auto" href="user/new"><h3 style="color: white">Create new User</h3></a>
+</div>
+
+<form th:action="@{/info}" method="post">
+    <label for="userId">Enter User ID to delete:</label>
+    <input type="number" id="userId" name="id" required>
+    <button type="submit">Delete User</button>
+</form>
+
+
+
+</body>
+</html>
