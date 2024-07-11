@@ -11,6 +11,7 @@
             text-align: left;
             font-family: Arial, sans-serif;
         }
+
         form {
             background-color: darkslategray;
             color: white;
@@ -49,7 +50,7 @@
     <th:block th:each="userInfo :${userInfo}">
         <tr>
             <td><h3 th:text="${userInfo.getId()}"></h3></td>
-            <td><a th:href="@{/user/{id}(id=${userInfo.getId()})}"><h3 th:text="${userInfo.getName()}"></h3></a></td>
+            <td><a th:href="@{/user(id=${userInfo.getId()})}"><h3 th:text="${userInfo.getName()}"></h3></a></td>
             <td><h3 th:text="${userInfo.getSurName()}"></h3></td>
             <td><h3 th:text="${userInfo.getAge()}"></h3></td>
         </tr>
@@ -58,6 +59,8 @@
 </table>
 <div>
     <a style="margin-right: auto" href="user/new"><h3 style="color: white">Create new User</h3></a>
+
+
 </div>
 
 <form th:action="@{/info}" method="post">
@@ -65,7 +68,6 @@
     <input type="number" id="userId" name="id" required>
     <button type="submit">Delete User</button>
 </form>
-
 
 
 </body>

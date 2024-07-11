@@ -39,23 +39,30 @@
         <th><h2>Surname</h2></th>
         <th><h2>Age</h2></th>
     </tr>
-    <th:block th:each="userInfo :${userInfo}">
+    <th:block th:if="${userById}">
+        <p th:value="${userById.getId()}"></p>
         <tr>
-            <td><h3 th:text="${userInfo.getId()}"></h3></td>
-            <td><h3 th:text="${userInfo.getName()}"></h3></td>
-            <td><h3 th:text="${userInfo.getSurName()}"></h3></td>
-            <td><h3 th:text="${userInfo.getAge()}"></h3></td>
+            <td><h3 th:text="${userById.getId()}"></h3></td>
+            <td><h3 th:text="${userById.getName()}"></h3></td>
+            <td><h3 th:text="${userById.getSurName()}"></h3></td>
+            <td><h3 th:text="${userById.getAge()}"></h3></td>
         </tr>
+
     </th:block>
+
+    <div th:if="${userById == null}">
+        <p>User not found</p>
+    </div>
+
 
 </table>
 
-<a th:href="@{/user/{id}/edit(id=${userInfo.getId()})}"><h3>Edit user</h3></a>
+<a th:href="@{/user/edit(id=${id})}"><h3>Edit user</h3></a>
+
 <!--
 <form th:method="DELETE" th:action="@{/user/{id}(id=${userInfo.getId()})}" th:object="${userInfo}">
     <input type="submit" value="DELETE"/>
 </form> -->
-
 
 
 </body>
